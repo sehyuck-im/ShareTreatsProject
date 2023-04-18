@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExchangeServiceImplTest {
 
     @Test
-    void ready10GoodsCodes() { //상품 코드는 10개가 준비되면 고객에게 10개까지만 제공됩니다.
+    void ready20GoodsCodes() { //상품 코드는 10개가 준비되면 고객에게 10개까지만 제공됩니다.
         List<GoodsCode> goodsCodeList = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 20; i++) {
             GoodsCode goodsCode = new GoodsCode();
             if(goodsCodeList.contains(goodsCode)){
                 String code = GoodsCodeGenerator.generateCode();

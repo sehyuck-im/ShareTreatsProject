@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface ExchangeService {
 
-    List<GoodsCode> ready10GoodsCodes();
+    List<GoodsCode> ready20GoodsCodes();
+
+
 }
