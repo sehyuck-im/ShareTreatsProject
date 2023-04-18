@@ -1,5 +1,6 @@
 package com.ShareTreats.ShareTreatsProject.ExchangeGoods.Model;
 
+import com.ShareTreats.ShareTreatsProject.ExchangeGoods.Utils.GoodsCodeGenerator;
 import lombok.Data;
 
 import java.util.Random;
@@ -12,8 +13,11 @@ public class GoodsCode {
     private boolean isExchanged;
     // 상품 교환한 상점
     private Store exchangedStore;
-    // 코드는 9자리
-    private static final int CODE_LENGTH = 9;
-    private static final Random RANDOM = new Random();
+
+    public GoodsCode() {
+        this.code = GoodsCodeGenerator.generateCode();
+        this.isExchanged = false;
+        this.exchangedStore = new Store("none");
+    }
 
 }
