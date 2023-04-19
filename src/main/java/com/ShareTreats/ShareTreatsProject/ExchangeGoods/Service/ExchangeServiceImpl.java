@@ -14,9 +14,10 @@ public class ExchangeServiceImpl implements ExchangeService{
 
 
     @Override
-    public List<GoodsCode> ready20GoodsCodes() {
+    public List<GoodsCode> readyGoodsCodes(int quantity) { // quantity 가 들어오는 만큼 테스트 데이터 생성
+
         List<GoodsCode> goodsCodeList = new ArrayList<>();
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= quantity; i++) {
             GoodsCode goodsCode = new GoodsCode();
             if(goodsCodeList.contains(goodsCode)){ // goodsCode code로 중복 체크
                 String code = GoodsCodeGenerator.generateCode();

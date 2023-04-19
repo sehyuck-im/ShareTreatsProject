@@ -16,7 +16,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExchangeServiceImplTest {
 
     @Test
-    void ready20GoodsCodes() { //상품 코드는 10개가 준비되면 고객에게 10개까지만 제공됩니다.
+    void checkFunction(){
+        //
+
+    }
+
+    @Test
+    void readyGoodsCodes() { //상품 코드는 10개가 준비되면 고객에게 10개까지만 제공됩니다.
+
         List<GoodsCode> goodsCodeList = new ArrayList<>();
         for (int i = 1; i <= 20; i++) {
             GoodsCode goodsCode = new GoodsCode();
@@ -38,7 +45,6 @@ class ExchangeServiceImplTest {
         System.out.println("goodsCodeList = " + goodsCodeList);
     }
 
-
     @Test
     void generateGoodsCode() {
         String code = GoodsCodeGenerator.generateCode();
@@ -50,4 +56,6 @@ class ExchangeServiceImplTest {
         String code = StoreCodeGenerator.generateCode();
         System.out.println("code = " + code);
     }
+
+
 }
