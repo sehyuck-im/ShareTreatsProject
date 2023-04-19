@@ -3,7 +3,8 @@ package com.ShareTreats.ShareTreatsProject.ExchangeGoods.Model;
 import com.ShareTreats.ShareTreatsProject.ExchangeGoods.Utils.GoodsCodeGenerator;
 import lombok.Data;
 
-import java.util.Random;
+import java.util.Objects;
+
 
 @Data
 public class GoodsCode {
@@ -20,4 +21,21 @@ public class GoodsCode {
         this.exchangedStore = new Store("none");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GoodsCode goodsCode = (GoodsCode) o;
+        return Objects.equals(code, goodsCode.code);
+    }
+    public boolean equals(String str) {
+        GoodsCode goodsCode = new GoodsCode();
+        goodsCode.setCode(str);
+        return Objects.equals(code, goodsCode.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code);
+    }
 }
