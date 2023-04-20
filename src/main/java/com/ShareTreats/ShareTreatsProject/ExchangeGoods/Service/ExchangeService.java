@@ -13,6 +13,6 @@ public interface ExchangeService {
 
     String checkValidation(String targetCode, List<GoodsCode> goodsCodeList);
 
-    GoodsCode selectGoodsCode(GoodsCode temp, List<GoodsCode> goodsCodeList);
+    int selectGoodsCodeIndex(GoodsCode temp, List<GoodsCode> goodsCodeList);
 
 }

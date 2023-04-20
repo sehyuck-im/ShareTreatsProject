@@ -65,9 +65,7 @@ public class ExchangeServiceImpl implements ExchangeService{
     }
 
     @Override
-    public GoodsCode selectGoodsCode(GoodsCode temp, List<GoodsCode> goodsCodeList) {
-        int index = goodsCodeList.indexOf(temp);
-        temp = goodsCodeList.get(index);
-        return temp;
+    public int selectGoodsCodeIndex(GoodsCode temp, List<GoodsCode> goodsCodeList) {
+        return goodsCodeList.indexOf(temp);
     }
 }

@@ -38,7 +38,13 @@ class ExchangeServiceImplTest {
             temp.setCode(testInputs[i]);
             if(exchangeService.isValidGoodsCode(testInputs[i], goodsCodeList)){
                 GoodsCode targetGoodsCode = exchangeService.selectGoodsCode(temp, goodsCodeList);
-                System.out.println("targetGoodsCode = " + targetGoodsCode);
+                if(targetGoodsCode.isExchanged()){// 사용된 코드
+                    System.out.println("이미 사용된 코드입니다.");
+                }else{
+                    targetGoodsCode.setExchanged(true);
+                    targetGoodsCode.setExchangedStore(new Store(StoreCodeGenerator.generateCode()));
+
+                }
 
             }else{
                 System.out.println("사용할 수 없는 코드 입니다.");
@@ -47,7 +53,7 @@ class ExchangeServiceImplTest {
     }
 
     @Test
-    void selectGoodsCode(){ //code를 key로 list에서 객체 가져오기
+    void selectGoodsCodeIndex(){ //code를 key로 list에서 객체 가져오기
         // GoodsCode selectGoodsCode(GoodsCode temp, List<GoodsCode> goodsCodeList)
         prepareMockData();
         String testInput = goodsCodeList.get(0).getCode();
