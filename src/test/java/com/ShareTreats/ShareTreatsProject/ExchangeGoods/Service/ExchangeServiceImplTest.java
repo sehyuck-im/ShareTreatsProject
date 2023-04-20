@@ -24,7 +24,7 @@ class ExchangeServiceImplTest {
 
 
     @Test
-    void checkValidation() throws Exception {
+    void checkValidation(){
         // 고객은 상품 코드를 사용하기 전에 미리 상품을 교환할 수 있는지 확인이 가능합니다.
         // given 상품 코드 10개가 주어지며 5개는 이미 사용한 코드
         List<GoodsCode> goodsCodeList = exchangeService.readyGoodsCodes(10);
@@ -44,19 +44,22 @@ class ExchangeServiceImplTest {
         // service 호출 영역
         // String checkValidation(String targetCode, List<GoodsCode> goodsCodeList);
         for(int i=0; i< testInputs.length; i++){
-            GoodsCode temp = new GoodsCode();
-            temp.setCode(testInputs[i]);
-            if(goodsCodeList.contains(temp)){
-                int index = goodsCodeList.indexOf(temp);
-                GoodsCode targetGoodsCode = goodsCodeList.get(index);
-                System.out.println("testInput["+i+"] 은 존재하는 데이터");
-                System.out.println("targetGoodsCode.getCode() = " + targetGoodsCode.getCode());
-                System.out.println("targetGoodsCode.isExchanged() = " + targetGoodsCode.isExchanged());
-                System.out.println("targetGoodsCode.getExchangedStore().getStoreCode() = " + targetGoodsCode.getExchangedStore().getStoreCode());
 
-            }else{
-                System.out.println("testInput["+i+"] 은 잘못된 코드 입니다.");
-            }
+            String output = exchangeService.checkValidation(testInputs[i], goodsCodeList);
+            System.out.println(output);
+//            GoodsCode temp = new GoodsCode();
+//            temp.setCode(testInputs[i]);
+//            if(goodsCodeList.contains(temp)){
+//                int index = goodsCodeList.indexOf(temp);
+//                GoodsCode targetGoodsCode = goodsCodeList.get(index);
+//                System.out.println("testInput["+i+"] 은 존재하는 데이터");
+//                System.out.println("targetGoodsCode.getCode() = " + targetGoodsCode.getCode());
+//                System.out.println("targetGoodsCode.isExchanged() = " + targetGoodsCode.isExchanged());
+//                System.out.println("targetGoodsCode.getExchangedStore().getStoreCode() = " + targetGoodsCode.getExchangedStore().getStoreCode());
+//
+//            }else{
+//                System.out.println("testInput["+i+"] 은 잘못된 코드 입니다.");
+//            }
         }
 
 

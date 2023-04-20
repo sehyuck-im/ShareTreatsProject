@@ -9,5 +9,7 @@ public interface ExchangeService {
 
     List<GoodsCode> readyGoodsCodes(int quantity);
 
+    String checkValidation(String targetCode, List<GoodsCode> goodsCodeList);
+
 
 }

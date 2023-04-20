@@ -17,7 +17,7 @@ public class ExchangeServiceImpl implements ExchangeService{
     public List<GoodsCode> readyGoodsCodes(int quantity) { // quantity 가 들어오는 만큼 테스트 데이터 생성
 
         List<GoodsCode> goodsCodeList = new ArrayList<>();
-        for (int i = 1; i <= quantity; i++) {
+        for (int i = 0; i < quantity; i++) {
             GoodsCode goodsCode = new GoodsCode();
             if(goodsCodeList.contains(goodsCode)){ // goodsCode code로 중복 체크
                 String code = GoodsCodeGenerator.generateCode();
@@ -26,7 +26,7 @@ public class ExchangeServiceImpl implements ExchangeService{
                 }
                 goodsCode.setCode(code);
             }
-            if(i%2 == 0){ // 짝수번은 사용처리된 것으로 설정
+            if(i%2 == 0){ // 홀수번은 사용처리된 것으로 설정
                 String storeCode = StoreCodeGenerator.generateCode();
                 Store store = new Store(storeCode);
                 goodsCode.setExchanged(true);
@@ -36,5 +36,26 @@ public class ExchangeServiceImpl implements ExchangeService{
         }
 
         return goodsCodeList;
+    }
+
+    @Override
+    public String checkValidation(String targetCode, List<GoodsCode> goodsCodeList){
+        GoodsCode temp = new GoodsCode();
+        temp.setCode(targetCode);
+        StringBuilder sb = new StringBuilder();
+        if(goodsCodeList.contains(temp)){ // list에 targetCode를 가진 객체가 존재할 경우
+            int index = goodsCodeList.indexOf(temp);
+            GoodsCode targetGoodsCode = goodsCodeList.get(index);
+            sb.append("확인 요청하신 "+targetGoodsCode.getCode()+"는 ");
+            if(targetGoodsCode.isExchanged()){ // 사용된 코드
+                sb.append("사용된 코드이며 사용된 상점은 "+targetGoodsCode.getExchangedStore().getStoreCode()+"입니다");
+            }else{ // 사용할 수 있는 코드
+                sb.append("사용하실 수 있는 코드입니다.");
+            }
+
+        }else{ // 해당하는 객체가 없는 경우
+            sb.append("존재하지 않는 코드입니다.");
+        }
+        return sb.toString();
     }
 }
