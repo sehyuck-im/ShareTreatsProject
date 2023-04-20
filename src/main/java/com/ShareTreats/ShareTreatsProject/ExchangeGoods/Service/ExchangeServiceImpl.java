@@ -64,4 +64,11 @@ public class ExchangeServiceImpl implements ExchangeService{
         }
         return sb.toString();
     }
+
+    @Override
+    public GoodsCode selectGoodsCode(GoodsCode temp, List<GoodsCode> goodsCodeList) {
+        int index = goodsCodeList.indexOf(temp);
+        temp = goodsCodeList.get(index);
+        return temp;
+    }
 }

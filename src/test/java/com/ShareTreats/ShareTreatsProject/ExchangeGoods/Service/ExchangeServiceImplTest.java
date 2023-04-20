@@ -28,8 +28,35 @@ class ExchangeServiceImplTest {
 
     @Test
     void markAsUsed(){ //코드 사용 처리 메소드
-        //
+        // 존재하는 코드면 사용처리가 되었는지 확인, 사용처리 할 수 있으면 사용 처리, 이미 사용된거면 사용불가 안내
+        // String markAsUsed(String targetCode, List<GoodsCode> goodsCodeList);
+        prepareMockData();
+        // 0,1 은 존재하는 code, [2]는 없는 코드
+        String[] testInputs = {goodsCodeList.get(0).getCode(), goodsCodeList.get(1).getCode(), "asdfasfd"};
+        for(int i=0; i< testInputs.length; i++){
+            GoodsCode temp = new GoodsCode();
+            temp.setCode(testInputs[i]);
+            if(exchangeService.isValidGoodsCode(testInputs[i], goodsCodeList)){
+                
 
+            }else{
+                System.out.println("사용할 수 없는 코드 입니다.");
+            }
+        }
+    }
+
+    @Test
+    void selectGoodsCode(){ //code를 key로 list에서 객체 가져오기
+        // GoodsCode selectGoodsCode(GoodsCode temp, List<GoodsCode> goodsCodeList)
+        prepareMockData();
+        String testInput = goodsCodeList.get(0).getCode();
+        GoodsCode temp = new GoodsCode();
+        temp.setCode(testInput);
+        System.out.println("temp = " + temp);
+
+        int index = goodsCodeList.indexOf(temp);
+        temp = goodsCodeList.get(index);
+        System.out.println("temp = " + temp);
 
     }
 
