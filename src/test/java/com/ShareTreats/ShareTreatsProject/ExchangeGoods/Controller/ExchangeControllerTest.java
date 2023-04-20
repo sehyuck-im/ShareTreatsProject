@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -24,6 +23,13 @@ class ExchangeControllerTest {
     InfoService infoService;
 
     List<GoodsCode> goodsCodeList;
+
+    @Test
+    void runTest(){
+        ExchangeController exchangeController = new ExchangeController(exchangeService, infoService);
+        exchangeController.run();
+
+    }
 
     @Test
     void mockTest() { // 사용자의 입력을 받아 상품코드 조회, 사용처리
