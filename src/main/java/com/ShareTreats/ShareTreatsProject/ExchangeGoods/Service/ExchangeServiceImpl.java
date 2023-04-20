@@ -39,9 +39,8 @@ public class ExchangeServiceImpl implements ExchangeService{
 
     @Override
     public boolean isValidGoodsCode(String targetCode, List<GoodsCode> goodsCodeList) {
-        GoodsCode temp = new GoodsCode();
-        temp.setCode(targetCode);
-        return goodsCodeList.contains(targetCode);
+
+        return goodsCodeList.contains(new GoodsCode(targetCode));
     }
 
     @Override

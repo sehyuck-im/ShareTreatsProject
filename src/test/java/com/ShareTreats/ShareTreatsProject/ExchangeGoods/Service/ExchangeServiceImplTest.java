@@ -37,7 +37,8 @@ class ExchangeServiceImplTest {
             GoodsCode temp = new GoodsCode();
             temp.setCode(testInputs[i]);
             if(exchangeService.isValidGoodsCode(testInputs[i], goodsCodeList)){
-                
+                GoodsCode targetGoodsCode = exchangeService.selectGoodsCode(temp, goodsCodeList);
+                System.out.println("targetGoodsCode = " + targetGoodsCode);
 
             }else{
                 System.out.println("사용할 수 없는 코드 입니다.");

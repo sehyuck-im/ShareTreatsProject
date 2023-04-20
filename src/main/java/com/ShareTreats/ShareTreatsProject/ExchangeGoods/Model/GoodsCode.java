@@ -20,6 +20,11 @@ public class GoodsCode {
         this.isExchanged = false;
         this.exchangedStore = new Store("none");
     }
+    public GoodsCode(String code) {
+        this.code = code;
+        this.isExchanged = false;
+        this.exchangedStore = new Store("none");
+    }
 
     @Override
     public boolean equals(Object o) {
