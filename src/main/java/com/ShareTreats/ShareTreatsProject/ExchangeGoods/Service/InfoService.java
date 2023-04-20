@@ -18,4 +18,8 @@ public interface InfoService {
     void exit();
 
     String invalidCheckCode(StringTokenizer st);
+
+    String invalidStoreCode(String storeCode);
+
+    void wrongInputForClaim(StringTokenizer st);
 }

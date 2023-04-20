@@ -86,5 +86,32 @@ public class InfoServiceImpl implements InfoService{
         return sb.toString();
     }
 
+    @Override
+    public String invalidStoreCode(String storeCode) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("입력하신 상점 코드 "+storeCode+"는 유효한 상점 코드가 아닙니다.").append("\n");
+        sb.append("사용 처리 : CLAIM [상점코드] [상품코드]").append("\n");
+        sb.append("입력시 예시에있는 [ ]대괄호는 제외하고 입력해주세요.").append("\n");
+        sb.append("상점코드 입력시 공백(스페이스바) 제외하고 입력해주세요").append("\n");
+        sb.append("상점코드는 영문대소문자 6자리입니다.").append("\n");
+
+        return sb.toString();
+    }
+
+    @Override
+    public void wrongInputForClaim(StringTokenizer st) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("사용 처리 입력이 잘못되었습니다.").append("\n");
+        sb.append("입력하신 내용 : CLAIM ");
+        if(st.hasMoreTokens()){
+            while(st.hasMoreTokens()){
+                sb.append(st.nextToken()).append(" ");
+            }
+            sb.append("\n");
+        }
+        System.out.println(sb);
+        showCommand();
+    }
+
 
 }
