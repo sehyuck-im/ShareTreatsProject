@@ -44,6 +44,31 @@ public class ExchangeServiceImpl implements ExchangeService{
     }
 
     @Override
+    public List<GoodsCode> markAsUsed(String targetCode, List<GoodsCode> goodsCodeList) {
+        StringBuilder sb = new StringBuilder();
+        if(isValidGoodsCode(targetCode, goodsCodeList)){
+            GoodsCode temp = new GoodsCode();
+            temp.setCode(targetCode);
+            int index = selectGoodsCodeIndex(temp, goodsCodeList);
+            if(goodsCodeList.get(index).isExchanged()){// 사용된 코드
+                sb.append("사용 실패").append("\n");
+                sb.append("해당 "+targetCode+"는 이미 "+goodsCodeList.get(index).getExchangedStore().getStoreCode()+"에서 사용된 코드입니다.");
+            }else{
+                goodsCodeList.get(index).setExchanged(true);
+                String storeCode = StoreCodeGenerator.generateCode();
+                goodsCodeList.get(index).setExchangedStore(new Store(storeCode));
+                sb.append("사용 성공").append("\n");
+                sb.append(targetCode+"를 "+storeCode+"에서 사용 완료되었습니다.");
+            }
+            System.out.println(sb);
+        }else{
+            System.out.println("사용할 수 없는 코드 입니다.");
+        }
+
+        return goodsCodeList;
+    }
+
+    @Override
     public String checkValidation(String targetCode, List<GoodsCode> goodsCodeList){
         GoodsCode temp = new GoodsCode();
         temp.setCode(targetCode);

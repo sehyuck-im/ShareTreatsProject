@@ -7,12 +7,14 @@ import java.util.List;
 
 public interface ExchangeService {
 
-    boolean isValidGoodsCode(String targetCode, List<GoodsCode> goodsCodeList);
-
     List<GoodsCode> readyGoodsCodes(int quantity);
 
     String checkValidation(String targetCode, List<GoodsCode> goodsCodeList);
 
     int selectGoodsCodeIndex(GoodsCode temp, List<GoodsCode> goodsCodeList);
+
+    boolean isValidGoodsCode(String targetCode, List<GoodsCode> goodsCodeList);
+
+    List<GoodsCode> markAsUsed(String targetCode, List<GoodsCode> goodsCodeList);
 
 }
