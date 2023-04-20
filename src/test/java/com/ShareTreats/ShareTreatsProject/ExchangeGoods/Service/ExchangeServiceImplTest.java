@@ -24,65 +24,42 @@ class ExchangeServiceImplTest {
 
 
     @Test
-    void checkValidation() {
+    void checkValidation() throws Exception {
         // 고객은 상품 코드를 사용하기 전에 미리 상품을 교환할 수 있는지 확인이 가능합니다.
         // given 상품 코드 10개가 주어지며 5개는 이미 사용한 코드
         List<GoodsCode> goodsCodeList = exchangeService.readyGoodsCodes(10);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st;
-        boolean exit = false;
-        while(!exit){
-            sb.setLength(0); // StringBuilder 객체의 내용을 지웁니다.
-            sb.append("list 길이 = "+goodsCodeList.size()+"\n");
-            for(int i=0; i<goodsCodeList.size(); i++){
-                GoodsCode temp = goodsCodeList.get(i);
-                sb.append((i+1)+"번째 code = "+temp.getCode()+", 사용 여부 = "+temp.isExchanged()+" 사용처 = "+temp.getExchangedStore().getStoreCode()).append("\n");
+        // index 0, 1을 mock data로 사용할 예정
+        System.out.println("goodsCodeList.get(0).getCode() = " + goodsCodeList.get(0).getCode());
+        System.out.println("goodsCodeList.get(0).isExchanged() = " + goodsCodeList.get(0).isExchanged());
+        System.out.println("goodsCodeList.get(0).getExchangedStore().getStoreCode() = " + goodsCodeList.get(0).getExchangedStore().getStoreCode());
+
+        System.out.println("goodsCodeList.get(1).getCode() = " + goodsCodeList.get(1).getCode());
+        System.out.println("goodsCodeList.get(1).isExchanged() = " + goodsCodeList.get(1).isExchanged());
+        System.out.println("goodsCodeList.get(1).getExchangedStore().getStoreCode() = " + goodsCodeList.get(1).getExchangedStore().getStoreCode());
+
+        // 0,1 은 존재하는 code, [2]는 없는 코드
+        String[] testInputs = {goodsCodeList.get(0).getCode(), goodsCodeList.get(1).getCode(), "asdfasfd"};
+
+        // service 호출 영역
+        // String checkValidation(String targetCode, List<GoodsCode> goodsCodeList);
+        for(int i=0; i< testInputs.length; i++){
+            GoodsCode temp = new GoodsCode();
+            temp.setCode(testInputs[i]);
+            if(goodsCodeList.contains(temp)){
+                int index = goodsCodeList.indexOf(temp);
+                GoodsCode targetGoodsCode = goodsCodeList.get(index);
+                System.out.println("testInput["+i+"] 은 존재하는 데이터");
+                System.out.println("targetGoodsCode.getCode() = " + targetGoodsCode.getCode());
+                System.out.println("targetGoodsCode.isExchanged() = " + targetGoodsCode.isExchanged());
+                System.out.println("targetGoodsCode.getExchangedStore().getStoreCode() = " + targetGoodsCode.getExchangedStore().getStoreCode());
+
+            }else{
+                System.out.println("testInput["+i+"] 은 잘못된 코드 입니다.");
             }
-            sb.append("확인할 코드를 입력해 주세요."+"\n");
-            sb.append("입력 예시").append("\n");
-            sb.append("CHECK [상품코드]  (상품코드 입력시 [] 제외, 공백(스페이스) 없이 입력해주세요");
-            System.out.println(sb);
-            try {
-                st = new StringTokenizer(br.readLine(), " ");
-                String command = st.nextToken();
-                if(command.equals("EXIT")){
-                    exit = true;
-                }
-
-                if(command.equals("CHECK") && st.hasMoreTokens()){
-                    String checkCode = st.nextToken();
-                    if(checkCode.length() != 9){
-                        System.out.println("존재하지 않거나 상품코드를 잘못 입력하셨습니다. 확인 후 다시 입력 해주세요.");
-                    }else if(st.hasMoreTokens()){
-                        System.out.println("확인 요청이 잘못되었습니다. 확인 후 다시 입력 해주세요.");
-                    }
-
-                    GoodsCode temp = new GoodsCode();
-                    temp.setCode(checkCode);
-                    if(goodsCodeList.contains(temp)){
-                        int index = goodsCodeList.indexOf(temp);
-                        GoodsCode targetGoodsCode = goodsCodeList.get(index);
-                        sb.append("요청하신 코드 "+targetGoodsCode.getCode());
-                        if(targetGoodsCode.isExchanged()){
-                            sb.append("는 이미 "+targetGoodsCode.getExchangedStore().getStoreCode()+"에서 사용되었습니다"+"\n");
-                        }else{
-                            sb.append("사용 가능합니다");
-                        }
-                        System.out.println(sb);
-                    }else{
-                        System.out.println("존재하지 않거나 상품코드를 잘못 입력하셨습니다. 확인 후 다시 입력 해주세요.");
-                    }
-
-                }else{ //에러
-
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-
         }
+
+
 
     }
 
