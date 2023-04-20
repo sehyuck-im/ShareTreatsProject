@@ -21,6 +21,7 @@
 # 구현 조건
 
 1. 상품 교환 서비스
+ * test 디렉토리안 ExchangeControllerTest class에 존재하는 runTest()로 작동합니다.
  * 상품 교환 서비스의 데이터인 상품코드는 20개가 준비 됩니다.
  * 10개는 이미 사용한 상품코드입니다. (List index 홀수)
  * SHARETREATS는 고객에게 CHECK, HELP, CLAIM 명령어를 사용할 수 있게 합니다.
