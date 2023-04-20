@@ -30,7 +30,6 @@ class ExchangeControllerTest {
         prepareMockData();
         infoService.showData(goodsCodeList);
         infoService.showCommand();
-        infoService.showHelp();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -55,20 +54,22 @@ class ExchangeControllerTest {
 
                 } else if (command.equals("CLAIM")) { // 상품코드 사용
 
-                    if(st.countTokens() == 2){ // 상점코드와 상품코드가 입력된 경우
+                    if (st.countTokens() == 2) { // 상점코드와 상품코드가 입력된 경우
                         String storeCode = st.nextToken();
-                        if(exchangeService.isStoreCode(storeCode)){ // 상점코드가 맞으면
+                        if (exchangeService.isStoreCode(storeCode)) { // 상점코드가 맞으면
                             String targetCode = st.nextToken();
                             goodsCodeList = exchangeService.markAsUsed(targetCode, storeCode, goodsCodeList);
 
-                        }else{ // 유효한 상점코드가 아닌 경우
+                        } else { // 유효한 상점코드가 아닌 경우
                             System.out.println(infoService.invalidStoreCode(storeCode));
                         }
-                    }else{ // 입력을 잘못한 경우
+                    } else { // 입력을 잘못한 경우
                         infoService.wrongInputForClaim(st);
                     }
 
-                } else {
+                }else if(command.equals("HELP")){
+                        infoService.showHelp();
+                }else {
                     System.out.println("사용법을 확인해주세요");
                     infoService.showCommand();
                 }
