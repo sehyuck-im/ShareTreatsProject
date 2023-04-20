@@ -23,6 +23,17 @@ class ExchangeServiceImplTest {
     ExchangeService exchangeService;
 
 
+    
+
+    @Test
+    void markAsUsed(){ //코드 사용 처리 메소드
+        //
+
+
+    }
+
+
+
     @Test
     void checkValidation(){
         // 고객은 상품 코드를 사용하기 전에 미리 상품을 교환할 수 있는지 확인이 가능합니다.

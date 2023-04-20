@@ -12,4 +12,5 @@ public interface ExchangeService {
     String checkValidation(String targetCode, List<GoodsCode> goodsCodeList);
 
 
+
 }
