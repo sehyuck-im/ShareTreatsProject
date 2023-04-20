@@ -24,19 +24,6 @@ class ExchangeControllerTest {
     InfoService infoService;
 
     List<GoodsCode> goodsCodeList;
-    /*
-        1. 문자열은 0~9, a~z, A~Z, SPACE 까지의 문자를 무작위로 입력할 수 있습니다.
-        2. 문자열의 길이는 최대 30글자까지 입력할 것입니다.
-            - 고객에게 원하는 입력 형식
-            CHECK [상품코드]
-            HELP
-            CLAIM [상점코드] [상품코드]
-
-            - 고객의 입력 예시
-            Check 132 421 122
-            HELP
-            claIm ABcde 1231 2312 123
-     */
 
     @Test
     void mockTest() { // 사용자의 입력을 받아 상품코드 조회, 사용처리
@@ -67,7 +54,20 @@ class ExchangeControllerTest {
                     }
 
                 } else if (command.equals("CLAIM")) { // 상품코드 사용
-                    System.out.println("사용합니다");
+
+                    if(st.countTokens() == 2){ // 상점코드와 상품코드가 입력된 경우
+                        String storeCode = st.nextToken();
+                        if(exchangeService.isStoreCode(storeCode)){ // 상점코드가 맞으면
+                            String targetCode = st.nextToken();
+                            goodsCodeList = exchangeService.markAsUsed(targetCode, storeCode, goodsCodeList);
+
+                        }else{ // 유효한 상점코드가 아닌 경우
+                            System.out.println(infoService.invalidStoreCode(storeCode));
+                        }
+                    }else{ // 입력을 잘못한 경우
+                        infoService.wrongInputForClaim(st);
+                    }
+
                 } else {
                     System.out.println("사용법을 확인해주세요");
                     infoService.showCommand();
