@@ -4,6 +4,7 @@ import com.ShareTreats.ShareTreatsProject.ExchangeGoods.Model.GoodsCode;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 @Service
 public class InfoServiceImpl implements InfoService{
@@ -47,6 +48,42 @@ public class InfoServiceImpl implements InfoService{
             sb.append("코드 : "+temp.getCode()+", 사용 여부 : "+temp.isExchanged()+", 사용처 : "+temp.getExchangedStore().getStoreCode()).append("\n");
         }
         System.out.println(sb);
+    }
+
+    @Override
+    public void inputErr() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("입력 오류가 발생하였습니다. 다시 시도해주세요.");
+        System.out.println(sb);
+
+    }
+
+    @Override
+    public void exit() {
+        System.out.println("프로그램을 종료합니다.");
+    }
+
+    @Override
+    public String invalidCheckCode(StringTokenizer st) {
+        StringBuilder sb = new StringBuilder();
+        if(st.hasMoreTokens()){
+            sb.append("상품코드가 잘못 입력되었습니다.").append("\n");
+            sb.append("입력한 코드 : ");
+            while(st.hasMoreTokens()){
+                sb.append(st.nextToken()).append(" ");
+            }
+            sb.append("\n");
+
+        }else{
+            sb.append("상품코드가 입력되지 않았습니다");
+        }
+        sb.append("입력 양식에 맞추어 다시 입력해주세요").append("\n");
+        sb.append("사용 여부 확인 : CHECK [상품코드]").append("\n");
+        sb.append("입력시 예시에있는 [ ]대괄호는 제외하고 입력해주세요.").append("\n");
+        sb.append("상품코드 입력시 공백(스페이스바) 제외하고 입력해주세요").append("\n");
+        sb.append("상품코드는 0~9 자연수 9자리입니다.").append("\n");
+
+        return sb.toString();
     }
 
 
