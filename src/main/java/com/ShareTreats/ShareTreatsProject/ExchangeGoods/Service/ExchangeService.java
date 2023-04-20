@@ -15,6 +15,6 @@ public interface ExchangeService {
 
     boolean isValidGoodsCode(String targetCode, List<GoodsCode> goodsCodeList);
 
-    List<GoodsCode> markAsUsed(String targetCode, List<GoodsCode> goodsCodeList);
+    List<GoodsCode> markAsUsed(String targetCode, String storeCode, List<GoodsCode> goodsCodeList);
 
 }

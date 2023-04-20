@@ -33,23 +33,24 @@ class ExchangeServiceImplTest {
         prepareMockData();
         // 0,1 은 존재하는 code, [2]는 없는 코드
         String[] testInputs = {goodsCodeList.get(0).getCode(), goodsCodeList.get(1).getCode(), "asdfasfd"};
+        String storeCode = "AAAAAA";
         for(int i=0; i< testInputs.length; i++){
-            exchangeService.markAsUsed(testInputs[i], goodsCodeList);
-//            GoodsCode temp = new GoodsCode();
-//            temp.setCode(testInputs[i]);
-//            if(exchangeService.isValidGoodsCode(testInputs[i], goodsCodeList)){
-//                int index = exchangeService.selectGoodsCodeIndex(temp, goodsCodeList);
-//                if(goodsCodeList.get(index).isExchanged()){// 사용된 코드
-//                    System.out.println("이미 사용된 코드입니다.");
-//                }else{
-//                    goodsCodeList.get(index).setExchanged(true);
-//                    goodsCodeList.get(index).setExchangedStore(new Store(StoreCodeGenerator.generateCode()));
-//
-//                }
-//
-//            }else{
-//                System.out.println("사용할 수 없는 코드 입니다.");
-//            }
+//            exchangeService.markAsUsed(testInputs[i], goodsCodeList);
+            GoodsCode temp = new GoodsCode();
+            temp.setCode(testInputs[i]);
+            if(exchangeService.isValidGoodsCode(testInputs[i], goodsCodeList)){
+                int index = exchangeService.selectGoodsCodeIndex(temp, goodsCodeList);
+                if(goodsCodeList.get(index).isExchanged()){// 사용된 코드
+                    System.out.println("이미 사용된 코드입니다.");
+                }else{
+                    goodsCodeList.get(index).setExchanged(true);
+                    goodsCodeList.get(index).setExchangedStore(new Store(storeCode));
+
+                }
+
+            }else{
+                System.out.println("사용할 수 없는 코드 입니다.");
+            }
         }
         System.out.println("goodsCodeList = " + goodsCodeList);
     }

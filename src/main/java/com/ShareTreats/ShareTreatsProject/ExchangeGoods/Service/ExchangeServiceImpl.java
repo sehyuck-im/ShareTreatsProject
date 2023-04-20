@@ -44,7 +44,7 @@ public class ExchangeServiceImpl implements ExchangeService{
     }
 
     @Override
-    public List<GoodsCode> markAsUsed(String targetCode, List<GoodsCode> goodsCodeList) {
+    public List<GoodsCode> markAsUsed(String targetCode, String storeCode, List<GoodsCode> goodsCodeList) {
         StringBuilder sb = new StringBuilder();
         if(isValidGoodsCode(targetCode, goodsCodeList)){
             GoodsCode temp = new GoodsCode();
@@ -55,7 +55,6 @@ public class ExchangeServiceImpl implements ExchangeService{
                 sb.append("해당 "+targetCode+"는 이미 "+goodsCodeList.get(index).getExchangedStore().getStoreCode()+"에서 사용된 코드입니다.");
             }else{
                 goodsCodeList.get(index).setExchanged(true);
-                String storeCode = StoreCodeGenerator.generateCode();
                 goodsCodeList.get(index).setExchangedStore(new Store(storeCode));
                 sb.append("사용 성공").append("\n");
                 sb.append(targetCode+"를 "+storeCode+"에서 사용 완료되었습니다.");
