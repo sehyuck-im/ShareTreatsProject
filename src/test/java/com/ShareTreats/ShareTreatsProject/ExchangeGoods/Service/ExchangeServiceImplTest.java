@@ -22,8 +22,9 @@ class ExchangeServiceImplTest {
     @Autowired
     ExchangeService exchangeService;
 
+    List<GoodsCode> goodsCodeList;
 
-    
+
 
     @Test
     void markAsUsed(){ //코드 사용 처리 메소드
@@ -32,14 +33,24 @@ class ExchangeServiceImplTest {
 
     }
 
+    @Test
+    void isValidGoodsCode(){ // code가 존재하는지 확인하는 메소드
+        // boolean isValidGoodsCode(String targetCode, List<GoodsCode> goodsCodeList);
+        prepareMockData();
+        // 0,1 은 존재하는 code, [2]는 없는 코드
+        String[] testInputs = {goodsCodeList.get(0).getCode(), goodsCodeList.get(1).getCode(), "asdfasfd"};
+        for(int i=0; i< testInputs.length; i++){
+            GoodsCode temp = new GoodsCode();
+            temp.setCode(testInputs[i]);
+            System.out.println("goodsCodeList.contains(temp) = " + goodsCodeList.contains(temp));
 
+        }
+    }
 
     @Test
-    void checkValidation(){
-        // 고객은 상품 코드를 사용하기 전에 미리 상품을 교환할 수 있는지 확인이 가능합니다.
+    void prepareMockData(){
         // given 상품 코드 10개가 주어지며 5개는 이미 사용한 코드
-        List<GoodsCode> goodsCodeList = exchangeService.readyGoodsCodes(10);
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        goodsCodeList = exchangeService.readyGoodsCodes(10);
         // index 0, 1을 mock data로 사용할 예정
         System.out.println("goodsCodeList.get(0).getCode() = " + goodsCodeList.get(0).getCode());
         System.out.println("goodsCodeList.get(0).isExchanged() = " + goodsCodeList.get(0).isExchanged());
@@ -48,7 +59,13 @@ class ExchangeServiceImplTest {
         System.out.println("goodsCodeList.get(1).getCode() = " + goodsCodeList.get(1).getCode());
         System.out.println("goodsCodeList.get(1).isExchanged() = " + goodsCodeList.get(1).isExchanged());
         System.out.println("goodsCodeList.get(1).getExchangedStore().getStoreCode() = " + goodsCodeList.get(1).getExchangedStore().getStoreCode());
+    }
 
+    @Test
+    void checkValidation(){
+        // 고객은 상품 코드를 사용하기 전에 미리 상품을 교환할 수 있는지 확인이 가능합니다.
+
+        prepareMockData();
         // 0,1 은 존재하는 code, [2]는 없는 코드
         String[] testInputs = {goodsCodeList.get(0).getCode(), goodsCodeList.get(1).getCode(), "asdfasfd"};
 

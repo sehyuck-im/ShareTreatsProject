@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ExchangeService {
 
+    boolean isValidGoodsCode(String targetCode, List<GoodsCode> goodsCodeList);
+
     List<GoodsCode> readyGoodsCodes(int quantity);
 
     String checkValidation(String targetCode, List<GoodsCode> goodsCodeList);
