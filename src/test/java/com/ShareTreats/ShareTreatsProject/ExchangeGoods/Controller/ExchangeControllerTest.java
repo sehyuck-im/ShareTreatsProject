@@ -36,9 +36,16 @@ class ExchangeControllerTest {
         boolean exit = false;
         while (!exit) {
             try {
-                st = new StringTokenizer(br.readLine(), " ");
+                String input = br.readLine();
+                if(input.length()>30){
+                    infoService.overflowInput();
+                }
+                st = new StringTokenizer(input, " ");
+                // final int INPUT_MAX_LENGTH = 30;
+
                 // command 확인
-                String command = st.nextToken();
+
+                String command = st.hasMoreTokens() ? st.nextToken() : "";
                 if (command.equals("EXIT")) { // 종료
                     infoService.exit();
                     exit = true;
