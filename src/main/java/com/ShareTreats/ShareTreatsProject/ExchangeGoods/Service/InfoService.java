@@ -22,4 +22,6 @@ public interface InfoService {
     String invalidStoreCode(String storeCode);
 
     void wrongInputForClaim(StringTokenizer st);
+
+    void overflowInput();
 }

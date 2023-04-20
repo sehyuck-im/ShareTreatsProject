@@ -113,5 +113,10 @@ public class InfoServiceImpl implements InfoService{
         showCommand();
     }
 
+    @Override
+    public void overflowInput() {
+        System.out.println("30글자 이상 입력하셨습니다. 입력은 30글자 이하로 부탁드립니다.");
+    }
+
 
 }
