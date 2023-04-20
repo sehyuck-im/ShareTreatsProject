@@ -68,6 +68,20 @@ public class ExchangeServiceImpl implements ExchangeService{
     }
 
     @Override
+        public boolean isStoreCode(String storeCode) {
+            if (storeCode == null || storeCode.length() != 6) {
+                return false;
+            }
+            for (int i = 0; i < storeCode.length(); i++) {
+                char c = storeCode.charAt(i);
+                if (!Character.isLetter(c) || !Character.isLowerCase(c) && !Character.isUpperCase(c)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+    @Override
     public String checkValidation(String targetCode, List<GoodsCode> goodsCodeList){
         GoodsCode temp = new GoodsCode();
         temp.setCode(targetCode);

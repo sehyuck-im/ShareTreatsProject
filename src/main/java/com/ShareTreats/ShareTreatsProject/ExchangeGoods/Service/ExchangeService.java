@@ -17,4 +17,5 @@ public interface ExchangeService {
 
     List<GoodsCode> markAsUsed(String targetCode, String storeCode, List<GoodsCode> goodsCodeList);
 
+    boolean isStoreCode(String storeCode);
 }

@@ -18,7 +18,12 @@ class ExchangeServiceImplTest {
 
     List<GoodsCode> goodsCodeList;
 
+        @Test
+        void isStoreCode(){
+            String str = "AAAaAA";
+            System.out.println("exchangeService.isStoreCode(str) = " + exchangeService.isStoreCode(str));
 
+        }
 
     @Test
     void markAsUsed(){ //코드 사용 처리 메소드
