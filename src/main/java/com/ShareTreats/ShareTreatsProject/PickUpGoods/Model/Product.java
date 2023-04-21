@@ -16,5 +16,9 @@ public class Product {
         this.expirationDate = expirationDate;
     }
 
+    public Product(String name, String grade) {
+        this.name = name;
+        this.grade = grade;
+    }
 
 }
