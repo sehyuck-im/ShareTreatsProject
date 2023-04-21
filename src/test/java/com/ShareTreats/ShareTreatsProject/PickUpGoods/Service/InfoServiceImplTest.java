@@ -1,12 +1,15 @@
 package com.ShareTreats.ShareTreatsProject.PickUpGoods.Service;
 
-import org.springframework.stereotype.Service;
+import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@Service
-public class InfoServiceImpl implements InfoService{
+import java.util.StringTokenizer;
 
-    @Override
-    public void opening() {
+@SpringBootTest
+public class InfoServiceImplTest {
+
+    @Test
+    public void opening(){
         StringBuilder sb = new StringBuilder();
         sb.append("****************************").append("\n");
         sb.append("ShareTreat 뽑기 프로그램입니다.").append("\n");
@@ -14,7 +17,7 @@ public class InfoServiceImpl implements InfoService{
         System.out.println(sb);
     }
 
-    @Override
+    @Test
     public void showCommand() {
         StringBuilder sb = new StringBuilder();
 
@@ -25,7 +28,9 @@ public class InfoServiceImpl implements InfoService{
         sb.append("내가 뽑은 상품 : LIST").append("\n");
         sb.append("종료 : EXIT").append("\n");
         sb.append("입력예시에서 []은 제외하고 입력해주세요.").append("\n");
-
         System.out.println(sb);
     }
+
+
+
 }
