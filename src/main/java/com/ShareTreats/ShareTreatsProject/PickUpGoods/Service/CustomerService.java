@@ -2,7 +2,7 @@ package com.ShareTreats.ShareTreatsProject.PickUpGoods.Service;
 
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Model.Customer;
 
-public interface PickUpGoodsService {
+public interface CustomerService{
 
     Customer topUpBalance(Customer customer, int topUpCount);
 

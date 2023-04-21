@@ -4,8 +4,7 @@ import com.ShareTreats.ShareTreatsProject.PickUpGoods.Model.Customer;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PickUpGoodsServiceImpl implements PickUpGoodsService{
-
+public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer topUpBalance(Customer customer, int topUpCount) {

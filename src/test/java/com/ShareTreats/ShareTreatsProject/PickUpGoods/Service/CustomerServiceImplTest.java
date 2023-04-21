@@ -2,17 +2,13 @@ package com.ShareTreats.ShareTreatsProject.PickUpGoods.Service;
 
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Model.Customer;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-public class PickUpGoodsServiceImplTest {
+public class CustomerServiceImplTest {
 
-    private PickUpGoodsService pickUpGoodsService = new PickUpGoodsServiceImpl();
-
-
-
+    private CustomerService pickUpGoodsService = new CustomerServiceImpl();
 
     @Test
     public void topUpBalance(){
