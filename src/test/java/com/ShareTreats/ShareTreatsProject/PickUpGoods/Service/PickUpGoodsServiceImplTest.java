@@ -8,11 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @SpringBootTest
 public class PickUpGoodsServiceImplTest {
 
-    @MockBean
-    ValidExpirationDateGenerator validExpirationDateGenerator;
 
-    @Test
-    public void validExpirationDateGeneratorTest() {
-        System.out.println("validExpirationDateGenerator.generateExpirationDate() = " + validExpirationDateGenerator.generateExpirationDate());
-    }
+
+
 }

@@ -8,9 +8,10 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class ValidExpirationDateGeneratorTest {
 
+
     @Test
     public void generatorTest(){
         ValidExpirationDateGenerator validExpirationDateGenerator = new ValidExpirationDateGenerator();
-        System.out.println("validExpirationDateGenerator.generateExpirationDate() = " + validExpirationDateGenerator.generateExpirationDate());
+        System.out.println("validExpirationDateGenerator.generateValidExpirationDate() = " + validExpirationDateGenerator.generateValidExpirationDate());
     }
 }
