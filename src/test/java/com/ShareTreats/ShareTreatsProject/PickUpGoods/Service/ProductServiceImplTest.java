@@ -6,13 +6,17 @@ import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductAGradeGenerato
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductBGradeGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ValidExpirationDateGenerator;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @SpringBootTest
+@RunWith(SpringRunner.class)
 public class ProductServiceImplTest {
 
     private ProductService productService = new ProductServiceImpl();
@@ -23,6 +27,20 @@ public class ProductServiceImplTest {
 
     Map<Integer, Product> productMapA = new HashMap<>();
     Map<Integer, Product> productMapB = new HashMap<>();
+
+    @Test
+    public void pickA(){
+        int count = 5; // 상품 index 수
+        productMapA = productService.productMapA(count);
+        // A에 당첨되어 A 상품 선택
+        Random random = new Random();
+        int productIndex = random.nextInt(count);
+        System.out.println("productIndex = " + productIndex);
+        Product product = productMapA.get(productIndex);
+        System.out.println("product = " + product);
+
+
+    }
 
     @Test
     public void isValidProduct(){
@@ -48,17 +66,18 @@ public class ProductServiceImplTest {
 
     @Test
     public void readyProductMapB(){
-        productMapB = new HashMap<>();
-        int count = 5;
-        for(int i=0; i<count; i++){ // 홀수 index expired 상품
-            Product product = productBGradeGenerator.generateProduct();
-            if(i%2==0){
-                product.setExpirationDate(validExpirationDateGenerator.generateValidExpirationDate());
-            }else{
-                product.setExpirationDate(expiredDateGenerator.generateExpiredDate());
-            }
-            productMapB.put(i, product);
-        }
+        productMapB = productService.productMapB(5);
+        System.out.println("productMapB = " + productMapB);
+//        int count = 5;
+//        for(int i=0; i<count; i++){ // 홀수 index expired 상품
+//            Product product = productBGradeGenerator.generateProduct();
+//            if(i%2==0){
+//                product.setExpirationDate(validExpirationDateGenerator.generateValidExpirationDate());
+//            }else{
+//                product.setExpirationDate(expiredDateGenerator.generateExpiredDate());
+//            }
+//            productMapB.put(i, product);
+//        }
     }
 
     @Test

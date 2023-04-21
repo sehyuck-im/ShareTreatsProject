@@ -1,10 +1,11 @@
 package com.ShareTreats.ShareTreatsProject.PickUpGoods.Util;
 
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Model.Product;
+import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.Random;
 
+@Component
 public class ProductAGradeGenerator {
 
     private static final String[] PRODUCT_NAMES = {"CIDER", "COLA", "BUBBLE GUM", "CANDY", "SNACK"};

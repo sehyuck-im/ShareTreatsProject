@@ -1,6 +1,6 @@
 package com.ShareTreats.ShareTreatsProject.PickUpGoods.Service;
 
-public interface InfoService {
+public interface pickUpInfoService {
 
     void opening();
 

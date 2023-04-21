@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 import static org.junit.Assert.*;
 
 @SpringBootTest
-public class InfoServiceImplTest {
+public class PickUpPickUpInfoServiceImplTest {
     @Test
     public void showCheckCommand() {
         String testString = "123 12";

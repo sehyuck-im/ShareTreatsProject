@@ -1,9 +1,11 @@
 package com.ShareTreats.ShareTreatsProject.PickUpGoods.Util;
 
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Model.Product;
+import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+@Component
 public class ProductBGradeGenerator {
 
     private static final String[] PRODUCT_NAMES = {"CHICKEN", "PIZZA", "HAMBURGER", "FISH AND CHIPS", "SUSHI"};

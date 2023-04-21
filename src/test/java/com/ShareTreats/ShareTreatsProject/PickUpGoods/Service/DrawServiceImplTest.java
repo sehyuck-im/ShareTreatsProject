@@ -13,6 +13,7 @@ public class DrawServiceImplTest {
 
     private DrawService drawService = new DrawServiceImpl();
 
+
     @Test
     public void drawB(){
         Random random = new Random();

@@ -5,6 +5,7 @@ import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ExpiredDateGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductAGradeGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductBGradeGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ValidExpirationDateGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,10 +14,17 @@ import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements ProductService{
-    ProductAGradeGenerator productAGradeGenerator;
-    ProductBGradeGenerator productBGradeGenerator;
-    ValidExpirationDateGenerator validExpirationDateGenerator;
-    ExpiredDateGenerator expiredDateGenerator;
+    @Autowired
+    private ProductAGradeGenerator productAGradeGenerator;
+
+    @Autowired
+    private ProductBGradeGenerator productBGradeGenerator;
+
+    @Autowired
+    private ValidExpirationDateGenerator validExpirationDateGenerator;
+
+    @Autowired
+    private ExpiredDateGenerator expiredDateGenerator;
 
     @Override
     public boolean isValidProduct(Product product) {
