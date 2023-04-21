@@ -3,7 +3,7 @@ package com.ShareTreats.ShareTreatsProject.PickUpGoods.Util;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-public class ExpirationDateGenerator {
+public class ExpiredDateGenerator {
     private static final LocalDateTime NOW = LocalDateTime.now();
     private static final Random RANDOM = new Random();
 
