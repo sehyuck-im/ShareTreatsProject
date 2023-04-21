@@ -6,14 +6,23 @@ import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductAGradeGenerato
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductBGradeGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ValidExpirationDateGenerator;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProductServiceImpl {
+public class ProductServiceImpl implements ProductService{
     ProductAGradeGenerator productAGradeGenerator;
     ProductBGradeGenerator productBGradeGenerator;
     ValidExpirationDateGenerator validExpirationDateGenerator;
     ExpiredDateGenerator expiredDateGenerator;
+
+    @Override
+    public boolean isValidProduct(Product product) {
+        LocalDateTime now = LocalDateTime.now();
+        int result = product.getExpirationDate().compareTo(now);
+
+        return result>0;
+    }
 
     public Map<Integer, Product> productMapB(int count) {
         return getIntegerProductMap(count, productBGradeGenerator.generateProduct());
