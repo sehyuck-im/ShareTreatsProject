@@ -10,6 +10,14 @@ import static org.junit.Assert.*;
 public class ProductAGradeGeneratorTest {
 
     private ProductAGradeGenerator productAGradeGenerator = new ProductAGradeGenerator();
+    private ProductBGradeGenerator productBGradeGenerator = new ProductBGradeGenerator();
+
+    @Test
+    public void generatorTestB(){
+        Product product = productBGradeGenerator.generateProduct();
+        System.out.println(product);
+    }
+
     @Test
     public void generatorTest(){
         Product product = productAGradeGenerator.generateProduct();
