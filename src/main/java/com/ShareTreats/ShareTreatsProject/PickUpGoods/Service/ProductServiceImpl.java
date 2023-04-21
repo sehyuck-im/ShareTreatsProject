@@ -5,11 +5,13 @@ import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ExpiredDateGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductAGradeGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ProductBGradeGenerator;
 import com.ShareTreats.ShareTreatsProject.PickUpGoods.Util.ValidExpirationDateGenerator;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class ProductServiceImpl implements ProductService{
     ProductAGradeGenerator productAGradeGenerator;
     ProductBGradeGenerator productBGradeGenerator;
@@ -20,7 +22,6 @@ public class ProductServiceImpl implements ProductService{
     public boolean isValidProduct(Product product) {
         LocalDateTime now = LocalDateTime.now();
         int result = product.getExpirationDate().compareTo(now);
-
         return result>0;
     }
 
