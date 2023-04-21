@@ -4,11 +4,16 @@ import com.ShareTreats.ShareTreatsProject.PickUpGoods.Model.Customer;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 @SpringBootTest
 public class CustomerServiceImplTest {
 
     private CustomerService pickUpGoodsService = new CustomerServiceImpl();
+
+    Map<String, Customer> customerMap = new HashMap<>();
 
     @Test
     public void topUpBalance(){
